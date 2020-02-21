@@ -2,10 +2,9 @@
 
 #include <vector>
 #include <iostream>
-#include <random>
 #include <array>
-#include <time.h>
-
+#include "rng.h"
+#include "character.h"
 
 class _map {
     /*
@@ -21,17 +20,19 @@ class _map {
     This continues until there are no more heads to consider.
     */
 public:
-    std::array<std::array<bool, 128>, 128>  map_;
-    _map(long& seed, double& fill_factor);
-    _map(long& seed);
-    _map(double& fill_factor);
+    std::array<std::array<bool, 128>, 128>  map_; //should change to bitfield to save space
+    // every cell has a vector of characters
+    std::array<std::array<std::vector<character>, 128>, 128> enemies;
+
+    _map(double&);
     _map();
     void generatemap(std::vector<std::array<int, 2>> heads = {{}});
     void print_map(std::ostream&);
+    //void populate_map();
 private:
-	std::mt19937 gen;
-    unsigned long sd;
     double fill;
+    //double encounter_rate; // odds of encountering an enemy on average
+    rng generator;
 };
 
 

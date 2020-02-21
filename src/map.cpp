@@ -1,37 +1,16 @@
 #include "map.h"
 
-
-
-_map::_map(long& seed, double& fill_factor) : sd(seed), fill(fill_factor) {
-    for (auto &arr : map_){
-        arr.fill(false);
-    }
-    gen = std::mt19937(seed);
-}
-
 _map::_map() {
-    sd = time(0);
     fill = .5;
     for (auto &arr : map_){
         arr.fill(false);
     }
-    gen = std::mt19937(sd);
-}
-
-_map::_map(long& seed): sd(seed) {
-    fill = .5;
-    for (auto &arr : map_){
-        arr.fill(false);
-    }
-    gen = std::mt19937(sd);
 }
 
 _map::_map(double& fill_factor): fill(fill_factor) {
-    sd = time(0);
     for (auto &arr : map_){
         arr.fill(false);
     }
-    gen = std::mt19937(sd);
 }
 
 void _map::generatemap(std::vector<std::array<int, 2>> heads) {
@@ -41,6 +20,7 @@ void _map::generatemap(std::vector<std::array<int, 2>> heads) {
     if (heads.size() == 0) {
         if (map_[n / 2][n / 2] != true) {
 
+            // 5 central orthogonal spaces are available by default
             map_[n / 2][n / 2] = true;
             map_[n / 2 + 1][n / 2] = true;
             map_[n / 2 - 1][n / 2] = true;
@@ -69,7 +49,7 @@ void _map::generatemap(std::vector<std::array<int, 2>> heads) {
             int i = nb[0];
             int j = nb[1];
             if (i != 0 && i != (n - 1) && j != 0 && j != (n - 1)) {
-                if (!map_[i][j] && (fill > distribution(gen))) {
+                if (!map_[i][j] && (fill > generator.uniform_unit_double())) {
                     map_[i][j] = true;
                     temp_heads.push_back(nb);
                 }
@@ -92,3 +72,14 @@ void _map::print_map(std::ostream& outs) {
         outs << std::endl;
     }
 }
+
+//void _map::populate_map(){
+//    for (unsigned long long i = 0; i < map_.size(); ++i){
+//        for (unsigned long long j = 0; j < map_[i].size(); ++j){
+//            if (map_[i][j] && (encounter_rate > generator.uniform_unit_double()))
+//            {
+//                characters[i][j].emplace_back();
+//            }
+//        }
+//    }
+//}

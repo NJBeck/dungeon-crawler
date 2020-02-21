@@ -4,6 +4,7 @@
 #include "map.h"
 #include <functional>
 #include <unordered_map>
+#include "rng.h"
 
 class event {
 public:
@@ -23,6 +24,9 @@ public:
 	std::ostream& print_situation(std::ostream&);
 	std::ostream& print_options(std::ostream&);
     void check_moves(character&, _map&);
+    void roll_encounter(character&, _map&, double encounter_rate = .5);
+    void combat(character&, std::vector<character>&, _map&);
+    void event_loop(std::ostream&, std::istream&, character&, _map&);
 
     // the actions available to characters
     void move_north(std::ostream&, std::istream&, character&, _map&);
@@ -30,9 +34,10 @@ public:
     void move_east(std::ostream&, std::istream&, character&, _map&);
     void move_west(std::ostream&, std::istream&, character&, _map&);
     void character_screen(std::ostream&, std::istream&, character&, _map&);
-    void exit(std::ostream&, std::istream&, character&, _map&);
+    // void exit(std::ostream&, std::istream&, character&, _map&);
     void back(std::ostream&, std::istream&, character&, _map&);
     void print_map(std::ostream&, std::istream&, character&, _map&);
+    void print_inventory(std::ostream&, std::istream&, character&, _map&);
 
     // the hashmap of strings to actions
     typedef std::function<void(event&, std::ostream&, std::istream&, character&, _map&)> act;
@@ -42,8 +47,10 @@ public:
     act _east = &event::move_east;
     act _west = &event::move_west;
     act _character = &event::character_screen;
-    act _exit = &event::exit;
+    // act _exit = &event::exit;
     act _back = &event::back;
     act _print_map = &event::print_map;
-
+    act _print_inv = &event::print_inventory;
+private:
+    rng generator;
 };
