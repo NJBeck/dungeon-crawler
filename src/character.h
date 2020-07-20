@@ -4,15 +4,16 @@
 #include <unordered_map>
 #include <array>
 
+enum class item_rarity { common, uncommon, rare, unique };
+
 class item {
 public:
     std::string name;
-    enum item_rarity{
-        common, uncommon, rare, unique
-    };
     item_rarity rarity;
 
     item();
+    virtual ~item();
+    std::string set_name(std::string&);
 };
 
 class weapon: public item{
@@ -22,30 +23,27 @@ public:
     std::array<long long, 4> min_stats;
     long long level;
 
-    void set_name(const std::string&);
     weapon();
-    weapon(item_rarity&, long long&);
-};
-
-class sword: public weapon{
-public:
+    weapon(std::string&, item_rarity&, long long&, std::array<long long, 4>&);
+    
+    std::string set_name(std::string&, long long&);
+    long long set_damage(long long&);
     long long damage;
-    double durability;
-
-    sword();
 };
-
 
 class character {
 public:
 	character();
     character(std::string);
     std::string name;
-    std::vector<item> inventory;
+    std::vector<item> items;
+    std::vector<weapon> weapons;
+    weapon equiped_weapon;
 
     void add_xp(const long long&);
+    void mod_hp(const long long&);
 
-    std::unordered_map<std::string, long long> stats;
+    std::unordered_map<std::string, long long&> stats;
     long long str;
     long long dex;
     long long intel;
@@ -54,13 +52,12 @@ public:
     long long xPos;
     long long yPos;
 
-protected:
+    long long damage;
     long long xp;
     long long xp_to_level;
     long long hp;
     long long max_hp;
     long long gold;
-
 };
 
 

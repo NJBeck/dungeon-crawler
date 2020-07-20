@@ -8,20 +8,15 @@ using namespace std;
 
 int main() {
 
-        unique_ptr<_map> world = make_unique<_map>();
+        auto world = make_unique<_map>();
+        auto main_evt = make_unique<event>();
         world->generatemap();
-        character player = character("Player");
-        player.xPos = world->map_.size() / 2;
-        player.yPos = world->map_.size() / 2;
-        unique_ptr<event> main_evt = make_unique<event>();
-        do {
-                //evt.generate_situation();
-                main_evt->check_moves(player, *world);
-                main_evt->print_situation(cout);
-                main_evt->print_options(cout);
-                main_evt->get_selection(cin);
-                main_evt->make_selection(cin, player, *world, cout);
-                main_evt->options.clear();
-        } while(main_evt->selected != "exit");
+        auto player = make_unique<character>("Player");
+        player->xPos = world->map.size() / 2;
+        player->yPos = world->map.size() / 2;
+        while (main_evt->selected != "exit"){
+                main_evt->check_moves(*player, *world);
+                main_evt->event_loop(cout, cin, *player, *world);
+        }
         return 0;
 }

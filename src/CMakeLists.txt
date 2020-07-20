@@ -1,0 +1,1 @@
+add_executable(crawler crawler.cpp event.cpp character.cpp map.cpp rng.cpp )

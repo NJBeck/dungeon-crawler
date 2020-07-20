@@ -4,7 +4,6 @@
 #include <iostream>
 #include <array>
 #include "rng.h"
-#include "character.h"
 
 class _map {
     /*
@@ -17,21 +16,19 @@ class _map {
     to the "fill_factor". If fill_factor (default is .5 and seems to work well) is larger
     then that space also becomes true and is added
     to a new list of 'heads' which are used in the next round of filling out the map.
-    This continues until there are no more heads to consider.
+    This continues until here are no more heads to consider.
     */
 public:
-    std::array<std::array<bool, 128>, 128>  map_; //should change to bitfield to save space
+    static const int map_size = 128;
+    std::array<std::array<bool, map_size>, map_size>  map = {}; //should change to bitfield to save space
     // every cell has a vector of characters
-    std::array<std::array<std::vector<character>, 128>, 128> enemies;
+    // std::array<std::array<std::vector<character>, map_size>, map_size> enemies;
 
-    _map(double&);
     _map();
+    _map(double&);
     void generatemap(std::vector<std::array<int, 2>> heads = {{}});
-    void print_map(std::ostream&);
-    //void populate_map();
 private:
     double fill;
-    //double encounter_rate; // odds of encountering an enemy on average
     rng generator;
 };
 
