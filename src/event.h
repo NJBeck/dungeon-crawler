@@ -2,8 +2,8 @@
 #include <string>
 #include "character.h"
 #include "map.h"
-#include <functional>
 #include <unordered_map>
+#include <unordered_set>
 #include "rng.h"
 
 class event {
@@ -16,16 +16,16 @@ public:
      * a selection is taken and matched to a hash map of associated functions
     */
 	std::vector<std::string> situation;
-	std::vector<std::string> options;
+	std::unordered_set<std::string> options;
 	std::string selected;
     std::vector<character> characters;
-
+    std::unordered_map<std::string, int> possibleOptions;
 
 	std::istream& get_selection(std::istream&);
-    void make_selection(std::istream&, character&, _map&, std::ostream&);
+    virtual void make_selection();
 	std::ostream& print_situation(std::ostream&);
 	std::ostream& print_options(std::ostream&);
-    void check_moves(character&, _map&);
+
     void roll_encounter(character&, _map&, double = .5);
     void encounter(character&, character&, _map&);
     void event_loop(std::ostream&, std::istream&, character&, _map&);
@@ -34,20 +34,32 @@ public:
 
 private:
     // the actions available to characters
-    void move_north(std::ostream&, std::istream&, character&, _map&);
-    void move_south(std::ostream&, std::istream&, character&, _map&);
-    void move_east(std::ostream&, std::istream&, character&, _map&);
-    void move_west(std::ostream&, std::istream&, character&, _map&);
-    void character_screen(std::ostream&, std::istream&, character&, _map&);
+
     void exit(std::ostream&, std::istream&, character&, _map&);
-    void print_map(std::ostream&, std::istream&, character&, _map&);
-    void print_inventory(std::ostream&, std::istream&, character&, _map&);
+
     void fight(std::ostream&, std::istream&, character&, _map&);
     void cont(std::ostream&, std::istream&, character&, _map&);
 
-    // the hashmap of strings to actions
-    typedef std::function<void(event&, std::ostream&, std::istream&, character&, _map&)> act;
-    static const std::unordered_map<std::string, act> actions;
     
     rng generator;
+};
+
+class overworld : private event{
+    overworld();
+
+
+    void make_selection();
+    void move_north();
+    void move_south();
+    void move_east();
+    void move_west();
+    void character_screen();
+    std::vector<std::string> local_map(int);
+    void print_inventory();
+    void check_moves();
+
+private:
+    _map mp;
+    character player
+
 };

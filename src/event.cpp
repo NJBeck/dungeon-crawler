@@ -4,19 +4,6 @@
 
 using namespace std;
 
-const unordered_map<string, event::act> event::actions = {
-    {"north", &move_north},
-    {"south", &move_south },
-    {"east", &move_east },
-    {"west", &move_west},
-    {"character", &character_screen},
-    {"exit", &exit},
-    {"map", &print_map},
-    {"inventory", &print_inventory},
-    {"fight", &fight},
-    {"continue", &cont}
-};
-
 event::event() : situation{ "welcome to my dungeon crawler v.0.0.5", "enter the direction you would like to go" } {
 }
 
@@ -26,20 +13,7 @@ istream& event::get_selection(istream& ins) {
     return ins;
 }
 
-void event::make_selection(istream& ins, character& player, _map& mp, ostream& outs) {
 
-    auto it = actions.find(selected);
-    if (it != actions.end()) {
-        options.clear();
-        auto& actn = it->second;
-        actn(*this, outs, ins, player, mp);
-    }
-    else{
-        outs << "please enter a valid choice" << endl;
-        get_selection(ins);
-        make_selection(ins, player, mp, outs);
-    }
-}
 
 ostream& event::print_situation(ostream& outs) {
     outs << "\n";
@@ -126,28 +100,7 @@ void event::print_inventory(std::ostream& outs, std::istream& ins, character& ch
     inv_screen.event_loop(outs, ins, chr, mp);
 }
 
-void event::print_map(ostream& outs, istream& ins, character& chr, _map& mp) {
-    long long& xPos = chr.xPos;
-    long long& yPos = chr.yPos;
-    int range = 16;
 
-    long long xMin = max(0LL, (xPos - (range / 2)));
-    long long xMax = min(static_cast<long long>(mp.map.size()), xPos + (range / 2));
-    long long yMin = max(0LL, (yPos - (range / 2)));
-    long long yMax = min(static_cast<long long>(mp.map.size()), yPos + (range / 2));
-
-    for (long long i = yMin; i < yMax; ++i){
-        for (long long j = xMin; j < xMax; ++j){
-            if (mp.map[i][j]){
-                outs << "X ";
-            }else{
-                outs << "| ";
-            }
-        }
-        outs << endl;
-    }
-    outs << endl;
-}
 
 void event::roll_encounter(character & chr, _map& mp, double encounter_rate){
     if (encounter_rate > generator.uniform_unit_double()){
@@ -213,12 +166,64 @@ void event::fight(ostream& outs, istream& ins, character& chr, _map& mp){
     event_loop(cout, cin, chr, mp);
 }
 
-void event::event_loop(ostream& outs, istream& ins, character& chr, _map& mp){
+void event::event_loop(){
     print_situation(outs);
     print_options(outs);
     get_selection(ins);
-    make_selection(ins, chr, mp, outs);
+    make_selection();
 }
 
 void event::exit(ostream& outs, istream& ins, character& chr, _map& mp){}
 void event::cont(std::ostream&, std::istream&, character&, _map&) {};
+
+overworld::overworld(){
+    possibleOptions = {
+            {"north", 0},
+            {"south", 1},
+            {"east", 2},
+            {"west", 3},
+    };
+}
+
+void overworld::make_selection() {
+    auto found = options.find(selected);
+    if (found != options.end()){
+        switch(*found){
+            case 0: move_north();
+                break;
+            case 1: move_south();
+                break;
+            case 2: move_east();
+                break;
+            case 3: move_west();
+                break;
+        }
+    }
+    else{
+        situation.emplace_back("Please make a valid selection");
+        event_loop();
+    }
+}
+
+vector<string> overworld::local_map(int range) {
+    vector<string> output;
+
+    long long xMin = max(0LL, (player.xPos - (range / 2)));
+    long long xMax = min(static_cast<long long>(mp.map.size()), player.xPos + (range / 2));
+    long long yMin = max(0LL, (player.yPos - (range / 2)));
+    long long yMax = min(static_cast<long long>(mp.map.size()), player.yPos + (range / 2));
+
+
+    for (long long i = yMin; i < yMax; ++i){
+        char temp[range];
+        for (long long j = xMin; j < xMax; ++j){
+            if (mp.map[i][j]){
+                temp[j] = 'O';
+            }else{
+                temp[j] = 'X';
+            }
+        }
+        output.emplace_back(string(temp));
+    }
+    return output;
+}
