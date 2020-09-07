@@ -1,9 +1,9 @@
-#include "character.h"
+#include "entities.h"
 
 using namespace std;
 
 character::character() : name("Character"), str(10), dex(10), intel(10), xPos(0), yPos(0),
-                        hp(100), max_hp(100), xp(0), xp_to_level(100), level(1), gold(0) {
+hp(100), max_hp(100), xp(0), xp_to_level(100), level(1), gold(0) {
     stats = {
         {"level", level},
         {"strength", str},
@@ -15,12 +15,12 @@ character::character() : name("Character"), str(10), dex(10), intel(10), xPos(0)
         {"max hp", max_hp}
     };
 
-    weapons.emplace_back(weapon());
-    equiped_weapon = weapons[0];
-    damage = str + level + equiped_weapon.damage;
+    equiped_weapon = make_shared<weapon>(weapon());
+    weapons.push_back(equiped_weapon);
+    damage = str + level + equiped_weapon->damage;
 
 }
-character::character(std::string nm): character(){
+character::character(std::string nm): character() {
     name = nm;
 }
 

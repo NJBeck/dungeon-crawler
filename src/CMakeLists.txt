@@ -1,1 +1,1 @@
-add_executable(crawler crawler.cpp event.cpp character.cpp map.cpp rng.cpp )
+add_executable(crawler main.cpp events.cpp entities.cpp map.cpp rng.cpp events.h entities.h map.h rng.h)

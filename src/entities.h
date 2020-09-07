@@ -3,6 +3,7 @@
 #include <string>
 #include <unordered_map>
 #include <array>
+#include <memory>
 
 enum class item_rarity { common, uncommon, rare, unique };
 
@@ -35,15 +36,16 @@ class character {
 public:
 	character();
     character(std::string);
+
     std::string name;
     std::vector<item> items;
-    std::vector<weapon> weapons;
-    weapon equiped_weapon;
+    std::vector<std::shared_ptr<weapon>> weapons;
+    std::shared_ptr<weapon> equiped_weapon;
 
     void add_xp(const long long&);
     void mod_hp(const long long&);
 
-    std::unordered_map<std::string, long long&> stats;
+    std::unordered_map<std::string, long long> stats;
     long long str;
     long long dex;
     long long intel;

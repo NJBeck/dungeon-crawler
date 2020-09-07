@@ -5,7 +5,7 @@
 #include <array>
 #include "rng.h"
 
-class _map {
+class map {
     /*
     map is a 2d array of bools representing cells which can be reached
     we start with a kernel just the center cell and the orthogonally adjacent ones for now
@@ -19,17 +19,15 @@ class _map {
     This continues until here are no more heads to consider.
     */
 public:
-    static const int map_size = 128;
-    std::array<std::array<bool, map_size>, map_size>  map = {}; //should change to bitfield to save space
-    // every cell has a vector of characters
-    // std::array<std::array<std::vector<character>, map_size>, map_size> enemies;
+    int map_size;
+    std::vector<std::vector<bool>> cells;
 
-    _map();
-    _map(double&);
+    map();
+
     void generatemap(std::vector<std::array<int, 2>> heads = {{}});
 private:
     double fill;
-    rng generator;
+    static rng generator;
 };
 
 
