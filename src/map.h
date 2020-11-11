@@ -1,5 +1,6 @@
 #pragma once
-
+// todo: change heads list to be modified in place
+// define a nucleus starting kernel for the map
 #include <vector>
 #include <iostream>
 #include <array>

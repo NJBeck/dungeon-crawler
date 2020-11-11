@@ -14,3 +14,6 @@ _deps
 ALL_BUILD*
 ZERO_CHECK*
 */Debug
+*/x64
+build/
+.vscode/

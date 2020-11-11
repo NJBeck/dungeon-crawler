@@ -28,7 +28,7 @@ public:
 
     // the game loop functions
     virtual void get_options() = 0;
-	std::ostream& print_situation(std::ostream&);
+	virtual std::ostream& print_situation(std::ostream&);
 	std::ostream& print_options(std::ostream&);
     std::istream& get_selection(std::istream&);
     virtual void make_selection() = 0;
@@ -44,14 +44,15 @@ public:
 
     virtual void make_selection();
     virtual void get_options();
-    map mp;
-    character player;
+    std::ostream& print_situation(std::ostream&) override;
+
 
 private:
     // enum of the options will be the ints that strToOpt maps to and optToString maps from
-    enum option{moveNorth, moveSouth, moveEast, moveWest, chScreen, mapScreen, invScreen};
+    enum option{moveNorth, moveSouth, moveEast, moveWest, chScreen, invScreen};
 
     void roll_encounter(double = .5);
+    std::vector<std::string> local_map();
 
     // the potential options available in a overworld screen
     void move_north();
@@ -59,10 +60,11 @@ private:
     void move_east();
     void move_west();
     void ch_screen();
-    // print_map will probably be deprecated in favor of using
-    // local_map to print the map alongside the situation
-    void print_map(int = 16);
     void print_inventory();
+
+    map mp;
+    character player;
+    int mapRange;
 };
 
 class CharacterScreen : public event{
@@ -79,16 +81,6 @@ public:
     InvScreen(character&);
     void cont() {};
     enum option{contin};
-    virtual void make_selection();
-    virtual void get_options();
-};
-
-class MapScreen: public event{
-public:
-    MapScreen(const int, map&, character&);
-    void cont() {};
-    enum option{contin};
-    std::vector<std::string> local_map(const int, map&, character&);
     virtual void make_selection();
     virtual void get_options();
 };

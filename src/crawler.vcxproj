@@ -22,7 +22,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{380116B6-12AE-374D-88C4-42D310C6D194}</ProjectGuid>
+    <ProjectGuid>{A935E42B-E29C-3657-8646-BAD72286B970}</ProjectGuid>
     <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
     <Keyword>Win32Proj</Keyword>
     <Platform>x64</Platform>
@@ -59,25 +59,25 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\projects\crawler-switches\bin\bin\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\projects\crawler-switches\dungeon-crawler\bin\Debug\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">crawler.dir\Debug\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">crawler</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\projects\crawler-switches\bin\bin\Release\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\projects\crawler-switches\dungeon-crawler\bin\Release\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">crawler.dir\Release\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">crawler</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\projects\crawler-switches\bin\bin\MinSizeRel\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\projects\crawler-switches\dungeon-crawler\bin\MinSizeRel\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">crawler.dir\MinSizeRel\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">crawler</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\projects\crawler-switches\bin\bin\RelWithDebInfo\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\projects\crawler-switches\dungeon-crawler\bin\RelWithDebInfo\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">crawler.dir\RelWithDebInfo\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">crawler</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
@@ -118,8 +118,8 @@
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/projects/crawler-switches/bin/src/Debug/crawler.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/projects/crawler-switches/bin/bin/Debug/crawler.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/projects/crawler-switches/dungeon-crawler/src/Debug/crawler.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/projects/crawler-switches/dungeon-crawler/bin/Debug/crawler.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -160,8 +160,8 @@
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/projects/crawler-switches/bin/src/Release/crawler.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/projects/crawler-switches/bin/bin/Release/crawler.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/projects/crawler-switches/dungeon-crawler/src/Release/crawler.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/projects/crawler-switches/dungeon-crawler/bin/Release/crawler.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -202,8 +202,8 @@
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/projects/crawler-switches/bin/src/MinSizeRel/crawler.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/projects/crawler-switches/bin/bin/MinSizeRel/crawler.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/projects/crawler-switches/dungeon-crawler/src/MinSizeRel/crawler.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/projects/crawler-switches/dungeon-crawler/bin/MinSizeRel/crawler.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -243,8 +243,8 @@
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/projects/crawler-switches/bin/src/RelWithDebInfo/crawler.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/projects/crawler-switches/bin/bin/RelWithDebInfo/crawler.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/projects/crawler-switches/dungeon-crawler/src/RelWithDebInfo/crawler.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/projects/crawler-switches/dungeon-crawler/bin/RelWithDebInfo/crawler.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -252,10 +252,10 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\projects\crawler-switches\src\CMakeLists.txt">
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/projects/crawler-switches/src/CMakeLists.txt</Message>
+    <CustomBuild Include="C:\projects\crawler-switches\dungeon-crawler\src\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/projects/crawler-switches/dungeon-crawler/src/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/projects/crawler-switches -BC:/projects/crawler-switches/bin --check-stamp-file C:/projects/crawler-switches/bin/src/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/projects/crawler-switches/dungeon-crawler -BC:/projects/crawler-switches/dungeon-crawler --check-stamp-file C:/projects/crawler-switches/dungeon-crawler/src/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -264,11 +264,11 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\projects\crawler-switches\bin\src\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\projects\crawler-switches\dungeon-crawler\src\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/projects/crawler-switches/src/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/projects/crawler-switches/dungeon-crawler/src/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/projects/crawler-switches -BC:/projects/crawler-switches/bin --check-stamp-file C:/projects/crawler-switches/bin/src/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/projects/crawler-switches/dungeon-crawler -BC:/projects/crawler-switches/dungeon-crawler --check-stamp-file C:/projects/crawler-switches/dungeon-crawler/src/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -277,11 +277,11 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\projects\crawler-switches\bin\src\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\projects\crawler-switches\dungeon-crawler\src\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/projects/crawler-switches/src/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/projects/crawler-switches/dungeon-crawler/src/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/projects/crawler-switches -BC:/projects/crawler-switches/bin --check-stamp-file C:/projects/crawler-switches/bin/src/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/projects/crawler-switches/dungeon-crawler -BC:/projects/crawler-switches/dungeon-crawler --check-stamp-file C:/projects/crawler-switches/dungeon-crawler/src/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -290,11 +290,11 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\projects\crawler-switches\bin\src\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\projects\crawler-switches\dungeon-crawler\src\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/projects/crawler-switches/src/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/projects/crawler-switches/dungeon-crawler/src/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/projects/crawler-switches -BC:/projects/crawler-switches/bin --check-stamp-file C:/projects/crawler-switches/bin/src/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/projects/crawler-switches/dungeon-crawler -BC:/projects/crawler-switches/dungeon-crawler --check-stamp-file C:/projects/crawler-switches/dungeon-crawler/src/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -303,24 +303,24 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\projects\crawler-switches\bin\src\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\projects\crawler-switches\dungeon-crawler\src\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="C:\projects\crawler-switches\src\main.cpp" />
-    <ClCompile Include="C:\projects\crawler-switches\src\events.cpp" />
-    <ClCompile Include="C:\projects\crawler-switches\src\entities.cpp" />
-    <ClCompile Include="C:\projects\crawler-switches\src\map.cpp" />
-    <ClCompile Include="C:\projects\crawler-switches\src\rng.cpp" />
-    <ClInclude Include="C:\projects\crawler-switches\src\events.h" />
-    <ClInclude Include="C:\projects\crawler-switches\src\entities.h" />
-    <ClInclude Include="C:\projects\crawler-switches\src\map.h" />
-    <ClInclude Include="C:\projects\crawler-switches\src\rng.h" />
+    <ClCompile Include="C:\projects\crawler-switches\dungeon-crawler\src\main.cpp" />
+    <ClCompile Include="C:\projects\crawler-switches\dungeon-crawler\src\events.cpp" />
+    <ClCompile Include="C:\projects\crawler-switches\dungeon-crawler\src\entities.cpp" />
+    <ClCompile Include="C:\projects\crawler-switches\dungeon-crawler\src\map.cpp" />
+    <ClCompile Include="C:\projects\crawler-switches\dungeon-crawler\src\rng.cpp" />
+    <ClInclude Include="C:\projects\crawler-switches\dungeon-crawler\src\events.h" />
+    <ClInclude Include="C:\projects\crawler-switches\dungeon-crawler\src\entities.h" />
+    <ClInclude Include="C:\projects\crawler-switches\dungeon-crawler\src\map.h" />
+    <ClInclude Include="C:\projects\crawler-switches\dungeon-crawler\src\rng.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="C:\projects\crawler-switches\bin\ZERO_CHECK.vcxproj">
-      <Project>{517ECD41-EE77-391D-8DA8-8E8CD9CAC5AB}</Project>
+    <ProjectReference Include="C:\projects\crawler-switches\dungeon-crawler\ZERO_CHECK.vcxproj">
+      <Project>{B20F3DDA-DABE-3A70-B2D2-414E6A115ED2}</Project>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>

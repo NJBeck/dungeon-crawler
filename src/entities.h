@@ -1,4 +1,8 @@
 #pragma once
+// todo: add entity virtual class
+//       rework stat hashmap
+//       add character constructor with (level, name)
+//       damage should probably be an idea exclusive to events::combat
 #include <vector>
 #include <string>
 #include <unordered_map>

@@ -4,7 +4,7 @@
 
 using namespace std;
 
-event::event() : situation{ "welcome to my dungeon crawler v.0.0.5", "enter the direction you would like to go" }, screen_width(64) {
+event::event() : situation{ "welcome to my dungeon crawler v.0.0.6", "enter the option you would like to select" }, screen_width(64) {
 }
 
 rng event::generator = rng();
@@ -20,7 +20,7 @@ ostream& event::print_situation(ostream& outs) {
     for (auto& str : situation) {
         outs << str << "\n";
     }
-    outs << string(31, '=') << endl;
+    outs << string(screen_width, '=') << endl;
     return outs;
 }
 
@@ -39,7 +39,7 @@ void event::event_loop(istream& ins, ostream& outs){
     make_selection();
 }
 
-overworld::overworld()
+overworld::overworld() : mapRange(16)
 {
     strToOpt = {
         {"north", moveNorth},
@@ -48,7 +48,7 @@ overworld::overworld()
         {"west", moveWest},
         {"inventory", invScreen},
         {"character", chScreen},
-        {"map", mapScreen}
+        //{"map", mapScreen}
     };
 
     optToString = {
@@ -58,7 +58,7 @@ overworld::overworld()
         {moveWest, "west"},
         {invScreen, "inventory"},
         {chScreen, "character"},
-        {mapScreen, "map"},
+        //{mapScreen, "map"},
     };
 
     availableOptions = vector<bool>(strToOpt.size(), false);
@@ -101,8 +101,8 @@ void overworld::make_selection() {
             break;
         case chScreen: ch_screen();
             break;
-        case mapScreen: print_map();
-            break;
+        //case mapScreen: print_map();
+        //    break;
     }
 }
 
@@ -124,9 +124,58 @@ void overworld::get_options() {
     }
     availableOptions[invScreen] = true;
     availableOptions[chScreen] = true;
-    availableOptions[mapScreen] = true;
+    //availableOptions[mapScreen] = true;
 }
 
+vector<string> overworld::local_map() {
+    vector<string> output;
+
+    long long xMin = max(0LL, (player.xPos - (mapRange / 2)));
+    long long xMax = min(static_cast<long long>(mp.map_size), player.xPos + (mapRange / 2));
+    long long yMin = max(0LL, (player.yPos - (mapRange / 2)));
+    long long yMax = min(static_cast<long long>(mp.map_size), player.yPos + (mapRange / 2));
+
+
+    for (long long i = yMin; i < yMax; ++i) {
+        vector<char> temp;
+        temp.reserve(2 * mapRange);
+        for (long long j = xMin; j < xMax; ++j) {
+            if (mp.cells[i][j]) {
+                temp.emplace_back('X');
+            }
+            else {
+                temp.emplace_back('|');
+            }
+            temp.emplace_back(' ');
+        }
+
+        output.emplace_back(string(temp.begin(), temp.end()));
+    }
+    return output;
+}
+
+ostream& overworld::print_situation(ostream& outs) {
+    // TODO: wrap situations longer than localMap size to screen_width
+    vector<string> localMap = local_map();
+    int maxLen = screen_width - mapRange - 1;   // the max length a line of situation text can be
+    for (int i = 0; i < localMap.size(); ++i) {
+        if (i == (situation.size() - 1)){
+            situation.emplace_back("");
+        }
+        if (situation[i].size() > maxLen) {
+            // print out the beginning
+            outs << situation[i].substr(0, maxLen) + "|" + localMap[i] << endl;
+            // chop off the end and add it to the next line 
+            situation[i + 1] = situation[i].substr(maxLen) + situation[i + 1];
+        }
+        else {
+            // if the line isn't too long then pad it with spaces
+            int diff = maxLen - situation[i].size();
+            outs << situation[i] + string(diff, ' ') + "|" + localMap[i] << endl;
+        }
+    }
+    return outs;
+}
 void overworld::move_north() {
     situation.clear();
     situation.emplace_back(player.name + " moved north");
@@ -177,11 +226,6 @@ void overworld::print_inventory(){
     screen.event_loop(cin, cout);
 }
 
-void overworld::print_map(int range){
-    MapScreen screen(range, mp, player);
-    screen.event_loop(cin, cout);
-}
-
 // definitions for InvScreen class
 InvScreen::InvScreen(character& player){
     strToOpt = {{"continue", contin}};
@@ -222,68 +266,6 @@ void InvScreen::get_options()
 {
     availableOptions = vector<bool>(strToOpt.size(), false);
     availableOptions[contin] = true;
-}
-
-// definitions for MapScreen class
-MapScreen::MapScreen(int range, map& mp, character& player){
-    strToOpt = {{"continue", contin}};
-    optToString = { {contin, "continue"} };
-    availableOptions = vector<bool>(strToOpt.size(), false);
-
-    situation = local_map(range, mp, player);
-}
-
-vector<string> MapScreen::local_map(int range, map& mp, character& player) {
-    vector<string> output;
-
-    long long xMin = max(0LL, (player.xPos - (range / 2)));
-    long long xMax = min(static_cast<long long>(mp.map_size), player.xPos + (range / 2));
-    long long yMin = max(0LL, (player.yPos - (range / 2)));
-    long long yMax = min(static_cast<long long>(mp.map_size), player.yPos + (range / 2));
-
-
-    for (long long i = yMin; i < yMax; ++i) {
-        vector<char> temp;
-        temp.reserve(2 * range);
-        for (long long j = xMin; j < xMax; ++j) {
-            if (mp.cells[i][j]) {
-                temp.emplace_back('X');
-            }
-            else {
-                temp.emplace_back('|');
-            }
-            temp.emplace_back(' ');
-        }
-
-        output.emplace_back(string(temp.begin(), temp.end()));
-    }
-    return output;
-}
-
-void MapScreen::get_options() {
-    availableOptions = vector<bool>(strToOpt.size(), false);
-    availableOptions[contin] = true;
-}
-
-void MapScreen::make_selection(){
-    auto found = strToOpt.find(selected);
-    if (found == strToOpt.end()) {
-        situation.clear();
-        situation.emplace_back("Please make a valid selection");
-        event_loop(cin, cout);
-    }
-    auto selection = found->second;
-
-    if (!availableOptions[selection]) {
-        situation.clear();
-        situation.emplace_back("Please make a valid selection");
-        event_loop(cin, cout);
-    }
-
-    switch (selection) {
-    case 0: cont();
-        break;
-    }
 }
 
 // definitions for Character Screen class
